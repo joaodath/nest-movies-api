@@ -17,7 +17,7 @@ StaffModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [staff_controller_1.StaffController],
-        providers: [staff_service_1.StaffService]
+        providers: [staff_service_1.StaffService],
     })
 ], StaffModule);
 exports.StaffModule = StaffModule;

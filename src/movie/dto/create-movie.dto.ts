@@ -1,3 +1,4 @@
+import { Prisma } from '.prisma/client';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateMovieDto {
@@ -12,4 +13,10 @@ export class CreateMovieDto {
 
   @IsNotEmpty()
   duration: number;
+
+  @IsOptional()
+  genre: Prisma.GenreCreateNestedManyWithoutMovieInput;
+
+  @IsOptional()
+  staff: Prisma.StaffCreateNestedManyWithoutMovieInput;
 }

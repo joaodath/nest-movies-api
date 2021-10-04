@@ -19,7 +19,6 @@ model Movie {
   genre Genre[]
   staff Staff[]
 }
-  
 
 model Genre {
   id Int @id @default(autoincrement())

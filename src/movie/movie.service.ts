@@ -23,6 +23,13 @@ export class MovieService {
       where: {
         id: id,
       },
+      include: {
+        genre: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
   }
 

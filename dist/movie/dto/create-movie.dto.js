@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMovieDto = void 0;
+const client_1 = require(".prisma/client");
 const class_validator_1 = require("class-validator");
 class CreateMovieDto {
 }
@@ -29,5 +30,13 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], CreateMovieDto.prototype, "duration", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Object)
+], CreateMovieDto.prototype, "genre", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Object)
+], CreateMovieDto.prototype, "staff", void 0);
 exports.CreateMovieDto = CreateMovieDto;
 //# sourceMappingURL=create-movie.dto.js.map
