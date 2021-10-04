@@ -1,34 +1,54 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UsePipes,
+  ValidationPipe,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import { Movie, Prisma } from '.prisma/client';
 
 @Controller('movie')
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
-  @Post()
-  create(@Body() createMovieDto: CreateMovieDto) {
-    return this.movieService.create(createMovieDto);
+  @Get('/list')
+  @UsePipes(ValidationPipe)
+  async findAll(): Promise<Movie[]> {
+    return await this.movieService.findAll();
   }
 
-  @Get()
-  findAll() {
-    return this.movieService.findAll();
+  @Get('/list/:id')
+  @UsePipes(ValidationPipe)
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Movie> {
+    return await this.movieService.findOne(id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.movieService.findOne(+id);
+  @Post('/create')
+  @UsePipes(ValidationPipe)
+  async create(@Body() createMovieDto: CreateMovieDto): Promise<Movie> {
+    return await this.movieService.create(createMovieDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
-    return this.movieService.update(+id, updateMovieDto);
+  @UsePipes(ValidationPipe)
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateMovieDto: CreateMovieDto,
+  ): Promise<Movie> {
+    return this.movieService.update(id, updateMovieDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.movieService.remove(+id);
+  @UsePipes(ValidationPipe)
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return await this.movieService.remove(id);
   }
 }
