@@ -26,7 +26,7 @@ export class MovieService {
     });
   }
 
-  async update(id: number, data: CreateMovieDto): Promise<Movie> {
+  async update(id: number, data: Prisma.MovieCreateInput): Promise<Movie> {
     return await this.prisma.movie.update({
       where: {
         id: id,
