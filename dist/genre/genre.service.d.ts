@@ -6,7 +6,7 @@ export declare class GenreService {
     findAll(): Promise<Genre[]>;
     findOne(id: number): Promise<Genre>;
     create(data: Prisma.GenreCreateInput): Promise<Genre>;
-    update(id: number, data: Prisma.GenreCreateInput): Promise<Genre>;
+    update(id: number, data: Prisma.GenreUpdateInput): Promise<Genre>;
     remove(id: number): Promise<Genre>;
     removeAll(): Promise<Prisma.BatchPayload>;
 }

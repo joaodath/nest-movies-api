@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateGenreDto } from './dto/create-genre.dto';
-import { UpdateGenreDto } from './dto/update-genre.dto';
-
 import { Prisma, Genre } from '.prisma/client';
 
 @Injectable()
@@ -25,14 +22,14 @@ export class GenreService {
     return await this.prisma.genre.create({ data });
   }
 
-  async update(id: number, data: Prisma.GenreCreateInput): Promise<Genre> {
+  async update(id: number, data: Prisma.GenreUpdateInput): Promise<Genre> {
     return await this.prisma.genre.update({
       where: { id: id },
       data: data,
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Genre> {
     return await this.prisma.genre.delete({
       where: { id: id },
     });

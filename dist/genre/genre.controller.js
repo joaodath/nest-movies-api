@@ -16,6 +16,7 @@ exports.GenreController = void 0;
 const common_1 = require("@nestjs/common");
 const genre_service_1 = require("./genre.service");
 const create_genre_dto_1 = require("./dto/create-genre.dto");
+const update_genre_dto_1 = require("./dto/update-genre.dto");
 let GenreController = class GenreController {
     constructor(genreService) {
         this.genreService = genreService;
@@ -68,7 +69,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, create_genre_dto_1.CreateGenreDto]),
+    __metadata("design:paramtypes", [Number, update_genre_dto_1.UpdateGenreDto]),
     __metadata("design:returntype", Promise)
 ], GenreController.prototype, "update", null);
 __decorate([

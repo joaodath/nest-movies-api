@@ -13,6 +13,7 @@ import {
 import { GenreService } from './genre.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
 import { Genre, Prisma } from '.prisma/client';
+import { UpdateGenreDto } from './dto/update-genre.dto';
 
 @Controller('genre')
 export class GenreController {
@@ -40,7 +41,7 @@ export class GenreController {
   @UsePipes(ValidationPipe)
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateGenreDto: CreateGenreDto,
+    @Body() updateGenreDto: UpdateGenreDto,
   ) {
     return await this.genreService.update(id, updateGenreDto);
   }
@@ -53,7 +54,7 @@ export class GenreController {
 
   @Delete('/delete/:id')
   @UsePipes(ValidationPipe)
-  async remove(@Param('id', ParseIntPipe) id: number) {
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<Genre> {
     return await this.genreService.remove(id);
   }
 }
