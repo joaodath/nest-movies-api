@@ -6,7 +6,7 @@ export declare class MovieService {
     create(data: Prisma.MovieCreateInput): Promise<Movie>;
     findAll(): Promise<Movie[]>;
     findOne(id: number): Promise<Movie>;
-    update(id: number, data: Prisma.MovieCreateInput): Promise<Movie>;
+    update(id: number, data: Prisma.MovieUpdateInput): Promise<Movie>;
     remove(id: number): Promise<Movie>;
     removeAll(): Promise<Prisma.BatchPayload>;
 }

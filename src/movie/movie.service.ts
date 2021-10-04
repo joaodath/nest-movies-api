@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMovieDto } from './dto/create-movie.dto';
-import { UpdateMovieDto } from './dto/update-movie.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Movie, Prisma } from '.prisma/client';
 
@@ -15,15 +13,16 @@ export class MovieService {
   }
 
   async findAll(): Promise<Movie[]> {
-    return await this.prisma.movie.findMany();
-  }
-
-  async findOne(id: number): Promise<Movie> {
-    return await this.prisma.movie.findUnique({
-      where: {
-        id: id,
-      },
+    return await this.prisma.movie.findMany({
       include: {
+        staff: {
+          select: {
+            name: true,
+            img: true,
+            birth: true,
+            staff: true,
+          },
+        },
         genre: {
           select: {
             name: true,
@@ -33,7 +32,30 @@ export class MovieService {
     });
   }
 
-  async update(id: number, data: Prisma.MovieCreateInput): Promise<Movie> {
+  async findOne(id: number): Promise<Movie> {
+    return await this.prisma.movie.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        staff: {
+          select: {
+            name: true,
+            img: true,
+            birth: true,
+            staff: true,
+          },
+        },
+        genre: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+  }
+
+  async update(id: number, data: Prisma.MovieUpdateInput): Promise<Movie> {
     return await this.prisma.movie.update({
       where: {
         id: id,
@@ -42,7 +64,7 @@ export class MovieService {
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Movie> {
     return await this.prisma.movie.delete({
       where: {
         id: id,

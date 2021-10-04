@@ -41,9 +41,9 @@ export class MovieController {
   @UsePipes(ValidationPipe)
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateMovieDto: CreateMovieDto,
+    @Body() updateMovieDto: UpdateMovieDto,
   ): Promise<Movie> {
-    return this.movieService.update(id, updateMovieDto);
+    return await this.movieService.update(id, updateMovieDto);
   }
 
   @Delete('/delete')
@@ -54,7 +54,7 @@ export class MovieController {
 
   @Delete('/delete/:id')
   @UsePipes(ValidationPipe)
-  async remove(@Param('id', ParseIntPipe) id: number) {
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<Movie> {
     return await this.movieService.remove(id);
   }
 }

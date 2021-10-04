@@ -16,6 +16,7 @@ exports.MovieController = void 0;
 const common_1 = require("@nestjs/common");
 const movie_service_1 = require("./movie.service");
 const create_movie_dto_1 = require("./dto/create-movie.dto");
+const update_movie_dto_1 = require("./dto/update-movie.dto");
 let MovieController = class MovieController {
     constructor(movieService) {
         this.movieService = movieService;
@@ -30,7 +31,7 @@ let MovieController = class MovieController {
         return await this.movieService.create(createMovieDto);
     }
     async update(id, updateMovieDto) {
-        return this.movieService.update(id, updateMovieDto);
+        return await this.movieService.update(id, updateMovieDto);
     }
     async removeAll() {
         return await this.movieService.removeAll();
@@ -68,7 +69,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, create_movie_dto_1.CreateMovieDto]),
+    __metadata("design:paramtypes", [Number, update_movie_dto_1.UpdateMovieDto]),
     __metadata("design:returntype", Promise)
 ], MovieController.prototype, "update", null);
 __decorate([

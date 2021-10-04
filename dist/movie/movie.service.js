@@ -22,7 +22,23 @@ let MovieService = class MovieService {
         });
     }
     async findAll() {
-        return await this.prisma.movie.findMany();
+        return await this.prisma.movie.findMany({
+            include: {
+                staff: {
+                    select: {
+                        name: true,
+                        img: true,
+                        birth: true,
+                        staff: true,
+                    },
+                },
+                genre: {
+                    select: {
+                        name: true,
+                    },
+                },
+            },
+        });
     }
     async findOne(id) {
         return await this.prisma.movie.findUnique({
@@ -30,6 +46,14 @@ let MovieService = class MovieService {
                 id: id,
             },
             include: {
+                staff: {
+                    select: {
+                        name: true,
+                        img: true,
+                        birth: true,
+                        staff: true,
+                    },
+                },
                 genre: {
                     select: {
                         name: true,
