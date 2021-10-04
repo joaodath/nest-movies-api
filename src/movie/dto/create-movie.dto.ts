@@ -12,10 +12,4 @@ export class CreateMovieDto {
 
   @IsNotEmpty()
   duration: number;
-
-  @IsNotEmpty()
-  genre: [number];
-
-  @IsNotEmpty()
-  staff: [number];
 }
