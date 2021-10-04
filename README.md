@@ -1,6 +1,12 @@
 
 # Nest Movies API
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/joaodath/nest-movies-api)
+[![Lines of Code](https://img.shields.io/tokei/lines/github/joaodath/nest-movies-api)](https://img.shields.io/tokei/lines/github/joaodath/nest-movies-api)
+[![Repo Size](https://img.shields.io/github/repo-size/joaodath/nest-movies-api)](https://img.shields.io/github/repo-size/joaodath/nest-movies-api)
+![CodeQL](https://github.com/joaodath/nest-movies-api/actions/workflows/codeql-analysis.yml/badge.svg)
+
+
 A simple movies API built with NestJS for study purposes. It serves movies with genres and staff, persisting data using MySQL.
 
 
