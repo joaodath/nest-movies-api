@@ -8,8 +8,8 @@ import { Movie, Prisma } from '.prisma/client';
 export class MovieService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: Prisma.MovieCreateInput) {
-    return this.prisma.movie.create({
+  async create(data: Prisma.MovieCreateInput): Promise<Movie> {
+    return await this.prisma.movie.create({
       data: data,
     });
   }
