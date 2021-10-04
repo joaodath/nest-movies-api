@@ -1,26 +1,44 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
 import { UpdateGenreDto } from './dto/update-genre.dto';
 
+import { Prisma, Genre } from '.prisma/client';
+
 @Injectable()
 export class GenreService {
-  create(createGenreDto: CreateGenreDto) {
-    return 'This action adds a new genre';
+  constructor(private prisma: PrismaService) {}
+
+  async findAll(): Promise<Genre[]> {
+    return await this.prisma.genre.findMany();
   }
 
-  findAll() {
-    return `This action returns all genre`;
+  async findOne(id: number): Promise<Genre> {
+    return await this.prisma.genre.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} genre`;
+  async create(data: Prisma.GenreCreateInput): Promise<Genre> {
+    return await this.prisma.genre.create({ data });
   }
 
-  update(id: number, updateGenreDto: UpdateGenreDto) {
-    return `This action updates a #${id} genre`;
+  async update(id: number, data: Prisma.GenreCreateInput): Promise<Genre> {
+    return await this.prisma.genre.update({
+      where: { id: id },
+      data: data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} genre`;
+  async remove(id: number) {
+    return await this.prisma.genre.delete({
+      where: { id: id },
+    });
+  }
+
+  async removeAll() {
+    return await this.prisma.genre.deleteMany({});
   }
 }

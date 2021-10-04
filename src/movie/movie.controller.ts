@@ -37,7 +37,7 @@ export class MovieController {
     return await this.movieService.create(createMovieDto);
   }
 
-  @Patch(':id')
+  @Patch('/update/:id')
   @UsePipes(ValidationPipe)
   async update(
     @Param('id', ParseIntPipe) id: number,
@@ -46,7 +46,13 @@ export class MovieController {
     return this.movieService.update(id, updateMovieDto);
   }
 
-  @Delete(':id')
+  @Delete('/delete')
+  @UsePipes(ValidationPipe)
+  async removeAll() {
+    return await this.movieService.removeAll();
+  }
+
+  @Delete('/delete/:id')
   @UsePipes(ValidationPipe)
   async remove(@Param('id', ParseIntPipe) id: number) {
     return await this.movieService.remove(id);

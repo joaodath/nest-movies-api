@@ -1,26 +1,47 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
+import { Staff, Prisma } from '.prisma/client';
 
 @Injectable()
 export class StaffService {
-  create(createStaffDto: CreateStaffDto) {
-    return 'This action adds a new staff';
+  constructor(private prisma: PrismaService) {}
+
+  async findAll(): Promise<Staff[]> {
+    return await this.prisma.staff.findMany();
   }
 
-  findAll() {
-    return `This action returns all staff`;
+  async findOne(id: number): Promise<Staff> {
+    return await this.prisma.staff.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} staff`;
+  async create(data: Prisma.StaffCreateInput): Promise<Staff> {
+    return await this.prisma.staff.create({ data });
   }
 
-  update(id: number, updateStaffDto: UpdateStaffDto) {
-    return `This action updates a #${id} staff`;
+  async update(id: number, data: Prisma.StaffCreateInput): Promise<Staff> {
+    return await this.prisma.staff.update({
+      where: {
+        id: id,
+      },
+      data: data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} staff`;
+  async remove(id: number) {
+    return await this.prisma.staff.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  async removeAll() {
+    return await this.prisma.staff.deleteMany({});
   }
 }

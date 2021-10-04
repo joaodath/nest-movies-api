@@ -43,7 +43,7 @@ export class MovieService {
     });
   }
 
-  async deleteAll() {
+  async removeAll() {
     return await this.prisma.movie.deleteMany({});
   }
 }
