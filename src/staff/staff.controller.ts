@@ -41,7 +41,7 @@ export class StaffController {
   @UsePipes(ValidationPipe)
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateStaffDto: CreateStaffDto,
+    @Body() updateStaffDto: UpdateStaffDto,
   ): Promise<Staff> {
     return await this.staffService.update(id, updateStaffDto);
   }
@@ -54,7 +54,7 @@ export class StaffController {
 
   @Delete('/delete/:id')
   @UsePipes(ValidationPipe)
-  async remove(@Param('id', ParseIntPipe) id: number) {
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<Staff> {
     return await this.staffService.remove(id);
   }
 }

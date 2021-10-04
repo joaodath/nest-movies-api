@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateStaffDto } from './dto/create-staff.dto';
-import { UpdateStaffDto } from './dto/update-staff.dto';
 import { Staff, Prisma } from '.prisma/client';
 
 @Injectable()
@@ -24,7 +22,7 @@ export class StaffService {
     return await this.prisma.staff.create({ data });
   }
 
-  async update(id: number, data: Prisma.StaffCreateInput): Promise<Staff> {
+  async update(id: number, data: Prisma.StaffUpdateInput): Promise<Staff> {
     return await this.prisma.staff.update({
       where: {
         id: id,
@@ -33,7 +31,7 @@ export class StaffService {
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Staff> {
     return await this.prisma.staff.delete({
       where: {
         id: id,

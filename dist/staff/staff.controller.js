@@ -16,6 +16,7 @@ exports.StaffController = void 0;
 const common_1 = require("@nestjs/common");
 const staff_service_1 = require("./staff.service");
 const create_staff_dto_1 = require("./dto/create-staff.dto");
+const update_staff_dto_1 = require("./dto/update-staff.dto");
 let StaffController = class StaffController {
     constructor(staffService) {
         this.staffService = staffService;
@@ -68,7 +69,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, create_staff_dto_1.CreateStaffDto]),
+    __metadata("design:paramtypes", [Number, update_staff_dto_1.UpdateStaffDto]),
     __metadata("design:returntype", Promise)
 ], StaffController.prototype, "update", null);
 __decorate([

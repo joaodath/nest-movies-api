@@ -6,7 +6,7 @@ export declare class StaffService {
     findAll(): Promise<Staff[]>;
     findOne(id: number): Promise<Staff>;
     create(data: Prisma.StaffCreateInput): Promise<Staff>;
-    update(id: number, data: Prisma.StaffCreateInput): Promise<Staff>;
+    update(id: number, data: Prisma.StaffUpdateInput): Promise<Staff>;
     remove(id: number): Promise<Staff>;
     removeAll(): Promise<Prisma.BatchPayload>;
 }
