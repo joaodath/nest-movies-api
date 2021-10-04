@@ -173,6 +173,9 @@ url/staff/delete
 
 You can also find a file named `collection-insomnia.json` which contains the same endpoints ready to import on Insomnia.
 
+## You should know
+This project uses [commitlint](https://github.com/conventional-changelog/commitlint) to enforce a conventional format on all commits. So, if you fork or clone this repo, it will install commitlint as dev dependency too and affect how you create commits, even if it's against your own repo. _You can change this behavior on `package-lock.json`._
+
 ## Let's chat!
 - Twitter: [@joaodath](https://twitter.com/joaodath)
 
