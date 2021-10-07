@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = env("PROD_DB")
 }
 
 generator client {
@@ -23,8 +23,7 @@ model Movie {
 model Genre {
   id Int @id @default(autoincrement())
   name String @unique
-  movie Movie? @relation(fields: [movieId], references: [id])
-  movieId Int?
+  movie Movie[]
 }
 
 model Staff {
@@ -33,6 +32,5 @@ model Staff {
   img String?
   birth String
   staff String
-  movie Movie? @relation(fields: [movieId], references: [id])
-  movieId Int? 
+  movie Movie[]
 }

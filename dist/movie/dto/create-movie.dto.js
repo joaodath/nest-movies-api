@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateMovieDto = void 0;
+exports.AddStaffAndGenreDto = exports.CreateMovieDto = void 0;
 const client_1 = require(".prisma/client");
 const class_validator_1 = require("class-validator");
 class CreateMovieDto {
@@ -39,4 +39,19 @@ __decorate([
     __metadata("design:type", Object)
 ], CreateMovieDto.prototype, "staff", void 0);
 exports.CreateMovieDto = CreateMovieDto;
+class AddStaffAndGenreDto {
+}
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Array)
+], AddStaffAndGenreDto.prototype, "genreId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Array)
+], AddStaffAndGenreDto.prototype, "staffId", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], AddStaffAndGenreDto.prototype, "movieId", void 0);
+exports.AddStaffAndGenreDto = AddStaffAndGenreDto;
 //# sourceMappingURL=create-movie.dto.js.map

@@ -11,7 +11,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
-import { CreateMovieDto } from './dto/create-movie.dto';
+import { CreateMovieDto, AddStaffAndGenreDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie, Prisma } from '.prisma/client';
 
@@ -44,6 +44,14 @@ export class MovieController {
     @Body() updateMovieDto: UpdateMovieDto,
   ): Promise<Movie> {
     return await this.movieService.update(id, updateMovieDto);
+  }
+
+  @Patch('/addinfo')
+  @UsePipes(ValidationPipe)
+  async addInfo(
+    @Body() data: AddStaffAndGenreDto,
+  ): Promise<Movie | { error: string }> {
+    return await this.movieService.addInfo(data);
   }
 
   @Delete('/delete')

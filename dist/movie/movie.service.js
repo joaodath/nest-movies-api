@@ -80,6 +80,55 @@ let MovieService = class MovieService {
     async removeAll() {
         return await this.prisma.movie.deleteMany({});
     }
+    async addInfo(data) {
+        if (data.genreId && data.staffId) {
+            await this.prisma.movie.update({
+                where: {
+                    id: data.movieId,
+                },
+                data: {
+                    genre: {
+                        connect: data.genreId,
+                    },
+                    staff: {
+                        connect: data.staffId,
+                    },
+                },
+            });
+            return await this.findOne(data.movieId);
+        }
+        else if (data.genreId && !data.staffId) {
+            await this.prisma.movie.update({
+                where: {
+                    id: data.movieId,
+                },
+                data: {
+                    genre: {
+                        connect: data.genreId,
+                    },
+                },
+            });
+            return await this.findOne(data.movieId);
+        }
+        else if (!data.genreId && data.staffId) {
+            await this.prisma.movie.update({
+                where: {
+                    id: data.movieId,
+                },
+                data: {
+                    staff: {
+                        connect: data.staffId,
+                    },
+                },
+            });
+            return await this.findOne(data.movieId);
+        }
+        else if (!data.genreId && !data.staffId) {
+            return {
+                error: 'No data to update',
+            };
+        }
+    }
 };
 MovieService = __decorate([
     (0, common_1.Injectable)(),

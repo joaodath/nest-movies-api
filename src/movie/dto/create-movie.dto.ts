@@ -20,3 +20,14 @@ export class CreateMovieDto {
   @IsOptional()
   staff: Prisma.StaffCreateNestedManyWithoutMovieInput;
 }
+
+export class AddStaffAndGenreDto {
+  @IsOptional()
+  genreId: [];
+
+  @IsOptional()
+  staffId: [];
+
+  @IsNotEmpty()
+  movieId: number;
+}

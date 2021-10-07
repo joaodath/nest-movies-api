@@ -33,6 +33,9 @@ let MovieController = class MovieController {
     async update(id, updateMovieDto) {
         return await this.movieService.update(id, updateMovieDto);
     }
+    async addInfo(data) {
+        return await this.movieService.addInfo(data);
+    }
     async removeAll() {
         return await this.movieService.removeAll();
     }
@@ -72,6 +75,14 @@ __decorate([
     __metadata("design:paramtypes", [Number, update_movie_dto_1.UpdateMovieDto]),
     __metadata("design:returntype", Promise)
 ], MovieController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)('/addinfo'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_movie_dto_1.AddStaffAndGenreDto]),
+    __metadata("design:returntype", Promise)
+], MovieController.prototype, "addInfo", null);
 __decorate([
     (0, common_1.Delete)('/delete'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),

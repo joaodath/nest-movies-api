@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Movie, Prisma } from '.prisma/client';
+import { AddStaffAndGenreDto } from './dto/create-movie.dto';
 
 @Injectable()
 export class MovieService {
@@ -74,5 +75,52 @@ export class MovieService {
 
   async removeAll() {
     return await this.prisma.movie.deleteMany({});
+  }
+
+  async addInfo(data: AddStaffAndGenreDto) {
+    if (data.genreId && data.staffId) {
+      await this.prisma.movie.update({
+        where: {
+          id: data.movieId,
+        },
+        data: {
+          genre: {
+            connect: data.genreId,
+          },
+          staff: {
+            connect: data.staffId,
+          },
+        },
+      });
+      return await this.findOne(data.movieId);
+    } else if (data.genreId && !data.staffId) {
+      await this.prisma.movie.update({
+        where: {
+          id: data.movieId,
+        },
+        data: {
+          genre: {
+            connect: data.genreId,
+          },
+        },
+      });
+      return await this.findOne(data.movieId);
+    } else if (!data.genreId && data.staffId) {
+      await this.prisma.movie.update({
+        where: {
+          id: data.movieId,
+        },
+        data: {
+          staff: {
+            connect: data.staffId,
+          },
+        },
+      });
+      return await this.findOne(data.movieId);
+    } else if (!data.genreId && !data.staffId) {
+      return {
+        error: 'No data to update',
+      };
+    }
   }
 }

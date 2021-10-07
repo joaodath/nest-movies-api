@@ -1,5 +1,6 @@
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Movie, Prisma } from '.prisma/client';
+import { AddStaffAndGenreDto } from './dto/create-movie.dto';
 export declare class MovieService {
     private prisma;
     constructor(prisma: PrismaService);
@@ -9,4 +10,7 @@ export declare class MovieService {
     update(id: number, data: Prisma.MovieUpdateInput): Promise<Movie>;
     remove(id: number): Promise<Movie>;
     removeAll(): Promise<Prisma.BatchPayload>;
+    addInfo(data: AddStaffAndGenreDto): Promise<Movie | {
+        error: string;
+    }>;
 }

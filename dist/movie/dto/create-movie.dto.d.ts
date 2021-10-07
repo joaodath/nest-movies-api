@@ -7,3 +7,8 @@ export declare class CreateMovieDto {
     genre: Prisma.GenreCreateNestedManyWithoutMovieInput;
     staff: Prisma.StaffCreateNestedManyWithoutMovieInput;
 }
+export declare class AddStaffAndGenreDto {
+    genreId: [];
+    staffId: [];
+    movieId: number;
+}
