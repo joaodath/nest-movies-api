@@ -10,7 +10,7 @@ exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 let AppService = class AppService {
     getHello() {
-        return 'Hello World!';
+        return 'Hey! My documentation is on GitHub! https://github.com/joaodath/nest-movies-api';
     }
 };
 AppService = __decorate([
