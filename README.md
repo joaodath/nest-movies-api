@@ -87,6 +87,22 @@ Example:
 {
   "release_date": "2021"
 }
+
+##Add Genre and/or Staff
+url/movies/addinfo
+
+Example:
+{
+	"movieId": 1,
+	"staffId": [
+		{"id": 22}
+	],
+	"genreId": [
+		{"id": 2},
+		{"id": 3},
+		{"id": 53}
+	]
+}
 ```
 ```
 ##Delete By ID @DELETE
